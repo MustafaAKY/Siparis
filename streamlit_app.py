@@ -72,7 +72,7 @@ with st.form(key="siparis_form"):
                         "ÜCRETTÜRÜ":"6",
                         "EK HİZMET":" ",
                         "KDV":"8",
-                        "SİP NO":" 123",
+                        "SİP NO":"",
                         "ÇIKIŞ NO":"",
                         "SATICI":"",
                         "HATTAR":"",
