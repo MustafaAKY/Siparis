@@ -23,10 +23,13 @@ with st.form(key="siparis_form"):
     dugme2 = st.selectbox("ARAS KARGO",options=BUSINESS_TYPES, index=None)
     
     sayfa_ismi =""
+    sube_kodu =""
     if dugme2 == "ARAS KARGO":
         sayfa_ismi = "Sayfa1"
+        sube_kodu ="205"
     else:
-        sayfa_ismi= "example"      
+        sayfa_ismi= "example"
+        sube_kodu ="155"      
     lines = bilgiler.split('\n')
     if len(lines) >= 6:
                 isim_soyisim = lines[0]
@@ -59,7 +62,7 @@ with st.form(key="siparis_form"):
                         "İL": il,
                         "ADRES":adres_bilgisi,
                         "TELEFON": telefon,
-                        "ŞUBE KOD" :"155",
+                        "ŞUBE KOD" :sube_kodu,
                         "MÜŞTERİ NO" :"",
                         "TUTAR": ucret,
                         "ÜRÜN": urun_bilgisi,
