@@ -8,7 +8,7 @@ ADRES_BİLGİSİ = [
     "isim_soyisim",
 ]
 
-st.markdown("Detay girin")
+
 
 connect = st.connection("gsheets",type=GSheetsConnection)
 veriler_data = connect.read(worksheet="aras_kargo", usecols=list(range(23)),ttl=5)
@@ -18,6 +18,23 @@ veriler_data = veriler_data.dropna(how="all")
 veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
 veriler_data2 = veriler_data2.dropna(how="all") 
 #st.dataframe(veriler_data2)
+st.markdown("KARGO SEÇ")
+SUBELER = [
+        "ARAS KARGO",
+        "PTT",]
+
+kargo_tip = st.selectbox("Hangi Kargo",["ARAS KARGO","PTT",])
+
+Hangi_veri=""
+if kargo_tip=="ARAS KARGO":
+    Hangi_veri=veriler_data
+    sube_kodu="205"
+    hangi_sube="aras_kargo"
+else:
+    Hangi_veri=veriler_data2
+    sube_kodu="155"
+    hangi_sube="ptt_kargo"   
+
 action = st.selectbox(
     "Seçenekler",
     [
@@ -34,15 +51,13 @@ if action == "Yeni Sipariş":
         st.markdown("**Zorunlu*")
         dugme= st.form_submit_button(label="Siparişi Kaydet")
         
-        BUSINESS_TYPES = [
-        "ARAS KARGO",
-        "PTT",]
 
-        dugme2 = st.selectbox("Hangi Kargo",options=BUSINESS_TYPES, index=None)
+
+        #dugme2 = st.selectbox("Hangi Kargo",options=SUBELER, index=None)
         
         
         sube_kodu =""
-        if dugme2 == "ARAS KARGO":
+        if kargo_tip == "ARAS KARGO":
             
             sube_kodu ="205"
         else:
@@ -93,7 +108,7 @@ if action == "Yeni Sipariş":
                     ]
                 )
 
-                if dugme2 == "ARAS KARGO":
+                if kargo_tip == "ARAS KARGO":
                     updated_df = pd.concat([veriler_data, veri_Giris], ignore_index=True)
                     connect.update(worksheet="aras_kargo", data=updated_df)
                 else:
@@ -103,14 +118,19 @@ if action == "Yeni Sipariş":
                 st.success("Sipariş Kaydedildi")
 
 elif action == "Sipariş Güncelle":
-    st.markdown("Select a vendor and update their details.")
+    st.markdown("Sipariş Seçin Ve güncelleyin")
+    SUBELER = [
+        "ARAS KARGO",
+        "PTT",]
+
+    #dugme2 = st.selectbox(label="Hangi Kargo",options=SUBELER, index=None)
 
     vendor_to_update = st.selectbox(
-     "Güncelleme", options=veriler_data["İSİM SOYİSİM"].tolist()    
+     "Güncelleme", options=Hangi_veri["İSİM SOYİSİM"].tolist()    
     )
         
                 
-    veri_Giris = veriler_data[veriler_data["İSİM SOYİSİM"] == vendor_to_update].iloc[
+    veri_Giris = Hangi_veri[Hangi_veri["İSİM SOYİSİM"] == vendor_to_update].iloc[
         0
     ]
     with st.form(key="update_form"):
@@ -156,9 +176,9 @@ elif action == "Sipariş Güncelle":
                 st.write("bilgiler Eksik")
                 st.stop()
      else:
-          veriler_data.drop(
-                veriler_data[
-                veriler_data["İSİM SOYİSİM"] == vendor_to_update
+          Hangi_veri.drop(
+                Hangi_veri[
+                Hangi_veri["İSİM SOYİSİM"] == vendor_to_update
                 ].index,
                 inplace=True,
           )
@@ -170,7 +190,7 @@ elif action == "Sipariş Güncelle":
                             "İL" :il,
                             "ADRES":ADRES,
                             "TELEFON":TELEFON,
-                            "ŞUBE KOD": "205",
+                            "ŞUBE KOD":sube_kodu,
                             "MÜŞTERİ NO":"",
                             "TUTAR":TUTAR,
                             "ÜRÜN":ÜRÜN,
@@ -178,7 +198,7 @@ elif action == "Sipariş Güncelle":
                             "GRAM": "800",
                             "GTÜRÜ": "2",
                             "ÜCRETTÜRÜ": "6",
-                            "EK HİZMET": " ",
+                            "EK HİZMET": "",
                             "KDV": "8",
                             "SİP NO": "",
                             "ÇIKIŞ NO": "",
@@ -195,7 +215,23 @@ elif action == "Sipariş Güncelle":
                 )
                 # Adding updated data to the dataframe
           updated_df = pd.concat(
-          [veriler_data, updated_vendor_data], ignore_index=True
+          [Hangi_veri, updated_vendor_data], ignore_index=True
                 )
-          connect.update(worksheet="aras_kargo", data=updated_df)
-          st.success("Vendor details successfully updated!")
+          connect.update(worksheet=hangi_sube, data=updated_df)
+          st.success("GÜNCELLENDİ")
+
+elif action == "Siparişleri Göster":
+    st.dataframe(Hangi_veri)          
+
+elif action == "Sipariş Sil":
+    vendor_to_delete = st.selectbox(
+        "Select a Vendor to Delete", options=Hangi_veri["İSİM SOYİSİM"].tolist()
+    )
+
+    if st.button("SİL"):
+        Hangi_veri.drop(
+            Hangi_veri[Hangi_veri["İSİM SOYİSİM"] == vendor_to_delete].index,
+            inplace=True,
+        )
+        connect.update(worksheet=hangi_sube, data=Hangi_veri)
+        st.success("SİLİNDİ")
