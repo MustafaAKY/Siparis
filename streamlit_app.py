@@ -2,15 +2,18 @@ import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 
-
 st.title ("Sipariş Kaydetme Ekranı")
 st.markdown("Detay girin")
 
 connect = st.connection("gsheets",type=GSheetsConnection)
-veriler_data = connect.read(worksheet="Sayfa1", usecols=list(range(23)),ttl=5)
+veriler_data = connect.read(worksheet="aras_kargo", usecols=list(range(23)),ttl=5)
 veriler_data = veriler_data.dropna(how="all") 
 st.dataframe(veriler_data)
 
+veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
+veriler_data2 = veriler_data2.dropna(how="all") 
+st.dataframe(veriler_data2)
+#st
 with st.form(key="siparis_form"):
     bilgiler = st.text_area(label="ADRESLER*")
     st.markdown("**Zorunlu*")
@@ -20,15 +23,15 @@ with st.form(key="siparis_form"):
     "ARAS KARGO",
     "PTT",]
 
-    dugme2 = st.selectbox("ARAS KARGO",options=BUSINESS_TYPES, index=None)
+    dugme2 = st.selectbox("Hangi Kargo",options=BUSINESS_TYPES, index=None)
     
-    sayfa_ismi =""
+    
     sube_kodu =""
     if dugme2 == "ARAS KARGO":
-        sayfa_ismi = "Sayfa1"
+        
         sube_kodu ="205"
     else:
-        sayfa_ismi= "example"
+        
         sube_kodu ="155"      
     lines = bilgiler.split('\n')
     if len(lines) >= 6:
@@ -49,51 +52,42 @@ with st.form(key="siparis_form"):
         if not bilgiler:
             st.write("bilgiler Eksik")
             st.stop()
-
-
-
         else:
             veri_Giris = pd.DataFrame(
                 [
-                    { 
-                          
-                        "İSİM SOYİSİM" : isim_soyisim,
-                        "İLÇE"  : ilce,
+                    {
+                        "İSİM SOYİSİM": isim_soyisim,
+                        "İLÇE": ilce,
                         "İL": il,
-                        "ADRES":adres_bilgisi,
+                        "ADRES": adres_bilgisi,
                         "TELEFON": telefon,
-                        "ŞUBE KOD" :sube_kodu,
-                        "MÜŞTERİ NO" :"",
+                        "ŞUBE KOD": sube_kodu,
+                        "MÜŞTERİ NO": "",
                         "TUTAR": ucret,
                         "ÜRÜN": urun_bilgisi,
-                        "MİKTAR":"1",
-                        "GRAM ":"800",
-                        "GTÜRÜ":"2",
-                        "ÜCRETTÜRÜ":"6",
-                        "EK HİZMET":" ",
-                        "KDV":"8",
-                        "SİP NO":"",
-                        "ÇIKIŞ NO":"",
-                        "SATICI":"",
-                        "HATTAR":"",
-                        "FATTAR":"",
-                        "EN" : "10",
-                        "BOY" : "15",
-                        "YÜKSEKLİK" : "10",
-                            
+                        "MİKTAR": "1",
+                        "GRAM": "800",
+                        "GTÜRÜ": "2",
+                        "ÜCRETTÜRÜ": "6",
+                        "EK HİZMET": " ",
+                        "KDV": "8",
+                        "SİP NO": "",
+                        "ÇIKIŞ NO": "",
+                        "SATICI": "",
+                        "HATTAR": "",
+                        "FATTAR": "",
+                        "EN": "10",
+                        "BOY": "15",
+                        "YÜKSEKLİK": "10",
                     }
                 ]
             )
-            
 
-
-            updated_df = pd.concat([veriler_data, veri_Giris], ignore_index=True)
-            connect.update(worksheet=sayfa_ismi, data=updated_df)
+            if dugme2 == "ARAS KARGO":
+                updated_df = pd.concat([veriler_data, veri_Giris], ignore_index=True)
+                connect.update(worksheet="aras_kargo", data=updated_df)
+            else:
+                updated_df1 = pd.concat([veriler_data2, veri_Giris], ignore_index=True)
+                connect.update(worksheet="ptt_kargo", data=updated_df1)
 
             st.success("Sipariş Kaydedildi")
-
-
-
-
-
-
