@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+import time
 
 st.title ("Sipariş Kaydetme Ekranı")
 st.markdown("Detay girin")
