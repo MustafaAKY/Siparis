@@ -235,3 +235,12 @@ elif action == "Sipariş Sil":
         )
         connect.update(worksheet=hangi_sube, data=Hangi_veri)
         st.success("SİLİNDİ")
+
+tab1, tab2 = st.tabs(["Tab 1", "Sapariş Sayısı"]      )  
+dolu_hucreler = veriler_data['İSİM SOYİSİM'].dropna()
+dolu_hucreler2 = veriler_data2['İSİM SOYİSİM'].dropna()
+# A sütunundaki dolu hücrelerin sayısını hesapla
+dolu_hucre_sayisi = dolu_hucreler.shape[0]
+dolu_hucre_sayisi2 = dolu_hucreler2.shape[0]
+tab2.write(f"ARAS KARGO SİPARİŞ SAYISI:  {dolu_hucre_sayisi}")
+tab2.write(f"PTT KARGO SİPARİŞ SAYISI:  {dolu_hucre_sayisi2}")
