@@ -147,7 +147,7 @@ elif action == "Sipariş Güncelle":
 
             TELEFON = st.text_input(
             
-            label="TELEFON*", value=veri_Giris["TELEFON"], key=str
+            label="TELEFON*", value=veri_Giris["TELEFON"]
             )
 
             TUTAR = st.text_input(
