@@ -4,11 +4,6 @@ import pandas as pd
 
 
 st.title ("Sipariş Kaydetme Ekranı")
-ADRES_BİLGİSİ = [
-    "isim_soyisim",
-]
-
-
 
 connect = st.connection("gsheets",type=GSheetsConnection)
 veriler_data = connect.read(worksheet="aras_kargo", usecols=list(range(23)),ttl=5)
@@ -18,7 +13,6 @@ veriler_data = veriler_data.dropna(how="all")
 veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
 veriler_data2 = veriler_data2.dropna(how="all") 
 #st.dataframe(veriler_data2)
-st.markdown("KARGO SEÇ")
 SUBELER = [
         "ARAS KARGO",
         "PTT",]
