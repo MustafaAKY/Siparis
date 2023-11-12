@@ -5,8 +5,8 @@ import pandas as pd
 # Türkiye'nin illeri listesi [^1^][5]
 iller = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
 
-
 st.title ("Sipariş Kaydetme Ekranı")
+
 
 
 connect = st.connection("gsheets",type=GSheetsConnection)
@@ -16,6 +16,13 @@ veriler_data = veriler_data.dropna(how="all")
 
 veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
 veriler_data2 = veriler_data2.dropna(how="all") 
+
+
+
+
+# Sonucu ekrana yazdır
+
+
 
 #st.dataframe(veriler_data2)
 st.markdown("KARGO SEÇ")
@@ -53,15 +60,15 @@ if action == "Yeni Sipariş":
         
         #dugme2 = st.selectbox("Hangi Kargo",options=SUBELER, index=None)
         
-        
+      
         sube_kodu =""
         if kargo_tip == "ARAS KARGO":
             
             sube_kodu ="205"
         else:
-            
+           
             sube_kodu ="155"      
-        lines = bilgiler.split('\n')
+        lines = bilgiler.title().split('\n')
         if len(lines) >= 6:
                     isim_soyisim = lines[0]
                     adres_bilgisi = lines[1]
@@ -74,15 +81,31 @@ if action == "Yeni Sipariş":
                         ucret = lines[4]
                         urun_bilgisi = '\n'.join(lines[6:])
 
+   
+                        
                     elif len(ilce_il) == 1:
                         ilce = ilce_il[0]
-                        il = lines[3]
+                        il = lines[3].split()
+                        il = il[0]
                         telefon = lines[4]
                         ucret = lines[5]
                         urun_bilgisi = '\n'.join(lines[7:])
+
+                    
+                    if il == "Istanbul":
+                        il = "İstanbul"
+                    elif ilce=="Istanbul" :
+                        ilce = "İstanbul"
+                    elif il =="Izmir":
+                        il ="İzmir"
+                    elif ilce == "Izmir":
+                        ilce="İzmir"                                     
+
+
                     if il not in iller:
             # Eğer şehir listede yoksa, 3. ve 4. satırları değiştir
                         ilce, il = il, ilce
+
 
                     if il not in iller:
                         st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨")
