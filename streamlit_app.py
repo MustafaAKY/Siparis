@@ -96,32 +96,32 @@ if action == "Yeni Sipariş":
                         urun_bilgisi = '\n'.join(lines[7:])
 
                     
-        if il == "Istanbul":
-            il = "İstanbul"
-        elif il == "i̇stanbul":
-            il = "İstanbul"  
-        elif ilce == "Istanbul":
-            il = "İstanbul"      
-        elif ilce=="i̇stanbul" :
-            ilce = "İstanbul"
-        elif il =="Izmir":
-            il ="İzmir"
-        elif il =="i̇zmir":
-             il =  "İzmir"   
-        elif ilce == "i̇zmir":
-             ilce="İzmir"                                     
-        elif ilce == "Izmir":
-            ilce="İzmir"  
-
-        if il not in iller:
-            # Eğer şehir listede yoksa, 3. ve 4. satırları değiştir
-                        ilce, il = il, ilce
-
-
-        if il not in iller:
-
-                        st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨")
-                        st.stop()
+                if il == "Istanbul":
+                    il = "İstanbul"
+                elif il == "i̇stanbul":
+                    il = "İstanbul"  
+                elif ilce == "Istanbul":
+                    il = "İstanbul"      
+                elif ilce=="i̇stanbul" :
+                    ilce = "İstanbul"
+                elif il =="Izmir":
+                    il ="İzmir"
+                elif il =="i̇zmir":
+                     il =  "İzmir"   
+                elif ilce == "i̇zmir":
+                     ilce="İzmir"                                     
+                elif ilce == "Izmir":
+                    ilce="İzmir"  
+        
+                if il not in iller:
+                    # Eğer şehir listede yoksa, 3. ve 4. satırları değiştir
+                                ilce, il = il, ilce
+        
+        
+                if il not in iller:
+        
+                                st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨")
+                                st.stop()
                              
 
         if dugme:
