@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_gsheets import GSheetsConnection
 import pandas as pd
+from streamlit_js_eval import streamlit_js_eval
 
 # Türkiye'nin illeri listesi [^1^][5]
 
@@ -167,7 +168,7 @@ if action == "Yeni Sipariş":
                     connect.update(worksheet="ptt_kargo", data=updated_df1)
                 
                 st.success("Sipariş Kaydedildi")
-                
+                streamlit_js_eval(js_expressions="parent.window.location.reload()")
 elif action == "Sipariş Güncelle":
     st.markdown("Sipariş Seçin Ve güncelleyin")
     SUBELER = [
