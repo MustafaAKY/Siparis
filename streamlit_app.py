@@ -120,9 +120,8 @@ if action == "Yeni Sipariş":
                 
                 
                     if il not in iller:
-                
-                           st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨"
-                           st.stop()
+                         st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨)       
+                         st.stop()
                              
 
         if dugme:
