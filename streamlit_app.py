@@ -122,6 +122,8 @@ if action == "Yeni Sipariş":
                     if il not in iller:
                 
                            st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨")
+                           Print(il) 
+                           Print(ilce)
                            st.stop()
                              
 
