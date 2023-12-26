@@ -3,7 +3,7 @@ from streamlit_gsheets import GSheetsConnection
 import pandas as pd
 from streamlit_js_eval import streamlit_js_eval
 import time
-# Türkiye'nin illeri listesi [^1^][5]
+
 
 st.title ("Sipariş Kaydetme Ekranı")
 
@@ -35,7 +35,7 @@ kargo_tip = st.selectbox("Hangi Kargo",["ARAS KARGO","PTT",])
 Hangi_veri=""
 if kargo_tip=="ARAS KARGO":
     Hangi_veri=veriler_data
-    sube_kodu="205"
+    sube_kodu="SUL"
     hangi_sube="aras_kargo"
 else:
     Hangi_veri=veriler_data2
@@ -64,7 +64,7 @@ if action == "Yeni Sipariş":
         sube_kodu =""
         if kargo_tip == "ARAS KARGO":
             
-            sube_kodu ="205"
+            sube_kodu ="SUL"
         else:
            
             sube_kodu ="155"      
