@@ -300,6 +300,7 @@ with tab11:
         
 with tab22: 
     st.title ("Sipariş Silme Ekranı")
+    st.text("DİKKAT SİPARİŞLERİ YAZDIRDIĞINDAN EMİN OL")
     if st.button("Hepsini Sil"):
                             
             Hangi_veri.drop(Hangi_veri.index, inplace=True)
