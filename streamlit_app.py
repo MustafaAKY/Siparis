@@ -299,6 +299,7 @@ with tab11:
         tab2.write(f"PTT KARGO SİPARİŞ SAYISI:  {dolu_hucre_sayisi2}")
         
 with tab22: 
+    st.title ("Sipariş Silme Ekranı")
     if st.button("Hepsini Sil"):
                             
             Hangi_veri.drop(Hangi_veri.index, inplace=True)
