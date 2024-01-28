@@ -121,9 +121,11 @@ with tab11:
                                   ilce, il = il, ilce
                         
                         
+                            ilce_il = lines[2]
                             if il not in iller:
-                                 st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨" )       
-                                 st.stop()
+                               st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨" )  
+                               st.warning("il ilçede bu yazıyor " + ilce_il)     
+                               st.stop()
                                      
         
                 if dugme:
