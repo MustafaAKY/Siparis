@@ -104,7 +104,7 @@ with tab11:
                             elif il == "i̇stanbul":
                                     il = "İstanbul"  
                             elif ilce == "Istanbul":
-                                    il = "İstanbul"      
+                                    ilce = "İstanbul"      
                             elif ilce=="i̇stanbul" :
                                     ilce = "İstanbul"
                             elif il =="Izmir":
