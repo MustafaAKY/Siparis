@@ -127,7 +127,11 @@ with tab11:
                                st.warning("il ilçede bu yazıyor " + ilce_il)     
                                st.stop()
                                      
-        
+                             if len(telefon) == 11:
+                             else:
+                               st.write("Telefon Numarası Hatalı")
+                               st.stop() 
+                                     
                 if dugme:
                     if not bilgiler:
                         st.write("bilgiler Eksik")
