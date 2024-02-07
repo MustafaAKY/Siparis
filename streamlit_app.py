@@ -128,7 +128,7 @@ with tab11:
                                st.stop()
                                      
                             if len(telefon) == 11:
-                                     
+                              pass       
                             else:
                                st.write("Telefon Numarası Hatalı")
                                st.stop() 
