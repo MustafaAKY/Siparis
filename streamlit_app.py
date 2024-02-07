@@ -130,7 +130,7 @@ with tab11:
                             if len(telefon) == 11:
                               pass       
                             else:
-                               st.write("Telefon Numarası Hatalı")
+                               st.warning('Telefon Numarası Hatalı',icon="🚨")
                                st.stop() 
                                      
                 if dugme:
