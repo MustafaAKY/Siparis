@@ -98,7 +98,7 @@ with tab11:
                                 ucret = lines[5]
                                 urun_bilgisi = '\n'.join(lines[7:])
         
-                            telefon.replace(" ", "")
+                            telefon = telefon.replace(" ", "")
                             if il == "Istanbul":
                                     il = "İstanbul"
                             elif il == "i̇stanbul":
