@@ -98,7 +98,7 @@ with tab11:
                                 ucret = lines[5]
                                 urun_bilgisi = '\n'.join(lines[7:])
         
-                            
+                            telefon.replace(" ", "")
                             if il == "Istanbul":
                                     il = "İstanbul"
                             elif il == "i̇stanbul":
@@ -126,8 +126,7 @@ with tab11:
                                st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨" )  
                                st.warning("il ilçede bu yazıyor " + ilce_il)     
                                st.stop()
-                        
-                            if len(telefon.replace(" ", "")) == 11:
+                            if len(telefon) == 11:
                               pass       
                             else:
                                st.warning('Telefon Numarası Hatalı '+ telefon ,icon="🚨")
