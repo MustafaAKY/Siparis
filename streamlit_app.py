@@ -127,7 +127,7 @@ with tab11:
                                st.warning("il ilçede bu yazıyor " + ilce_il)     
                                st.stop()
                             telefon.replace(" ", "")
-                            St.warning("telefon")  
+                            St.warning(telefon)  
                             if len(telefon.strip()) == 11:
                               pass       
                             else:
