@@ -126,11 +126,12 @@ with tab11:
                                st.warning('İL DOĞRU DEĞİL KONTROL ET', icon="🚨" )  
                                st.warning("il ilçede bu yazıyor " + ilce_il)     
                                st.stop()
-                            telefon.replace(" ", "")   
+                telefon.replace(" ", "")
+                St.warning("telefon")  
                             if len(telefon.strip()) == 11:
                               pass       
                             else:
-                               st.warning('Telefon Numarası Hatalı',icon="🚨")
+                               st.warning('Telefon Numarası Hatalı '+ telefon ,icon="🚨")
                                st.stop() 
                                      
                 if dugme:
