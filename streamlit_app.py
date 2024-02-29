@@ -329,9 +329,9 @@ with tab33:
         Son_Durum = soup.find("span", id="Son_Durum").text
         st.success(Son_Durum) 
         
-takip = st.text_input("Takip Kodu",placeholder='Takip Kodunu buraya yapıştır').strip()
+    takip = st.text_input("Takip Kodu",placeholder='Takip Kodunu buraya yapıştır').strip()
 
-if st.button("Sorgula"):
+    if st.button("Sorgula"):
         headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0'}
         url1 = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip}"
         
