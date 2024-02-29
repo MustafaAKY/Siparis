@@ -1,3 +1,5 @@
 streamlit
 st-gsheets-connection
 streamlit-js-eval
+requests
+beautifulsoup4
