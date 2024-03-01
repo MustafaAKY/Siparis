@@ -366,13 +366,13 @@ with tab33:
 
 
 
-        if bilgiler[0]["Kargo Son durum"] == "TESLİM EDİLDİ" and ["Gönderi tip"] == "NORMAL" :
+        if son_durum == "TESLİM EDİLDİ" and gonderi_tip == "NORMAL" :
             st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ TESLİM EDİLDİ</h1>", unsafe_allow_html=True)
 
-        elif bilgiler[0]["Kargo Son durum"] == "YOLDA" :
+        elif son_durum == "YOLDA" :
             st.markdown("<h1 style='color: blue; font-size: 36px;'>KARGONUZ YOLDADIR EN KISA SÜREDE SİZE GELECEK</h1>", unsafe_allow_html=True)    
 
-        elif bilgiler[0]["Gönderi tip"] == "İADE" :
+        elif gonderi_tip == "İADE" :
             st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
         else:
             
