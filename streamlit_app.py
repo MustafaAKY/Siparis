@@ -318,17 +318,7 @@ with tab22:
 with tab33:
     st.title ("KARGO TAKİP ETME EKRANI")    
     st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP')
-    def aras_sorgulama():
-        
-        url = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip}"
-        print(url)
-        response = requests.get(url)
-
-        # HTML içeriğini BeautifulSoup kullanarak analiz edin
-        soup = BS(response.content, 'html.parser')
-        Son_Durum = soup.find("span", id="Son_Durum").text
-        st.success(Son_Durum) 
-        
+    
     takip = st.text_input("Takip Kodu",placeholder='Takip Kodunu buraya yapıştır').strip()
 
     if st.button("Sorgula"):
