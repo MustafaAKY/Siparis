@@ -424,7 +424,12 @@ with tab33:
                 if veriler[8] == "Teslim" or veriler[8] == "Paketleme" or veriler[8] == "İade" or veriler[9] == "Yolda":
                     continue
 
-                kargo_verisi()    
+                liste.append({"TAKİP KODU":veriler[4], 
+                  "İSİM SOYİSİM":veriler[5],
+                  "TELEFON NU":"0"+veriler[19],
+                  "SONUÇ":veriler[9],
+                  "KARGO ŞUBESİ":veriler[10],
+                  "ÜCRET":veriler[13]+" TL"  })   
                 
         
             db = st.dataframe(liste)
