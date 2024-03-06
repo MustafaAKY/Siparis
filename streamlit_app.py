@@ -451,7 +451,7 @@ with tab33:
             for satir in tablo:
                 sütunlar = satir.find_all("td")
                 veriler = [sütun.get_text(strip=True) for sütun in sütunlar]
-            liste.append({"TAKİP KODU":veriler[4], 
+                liste.append({"TAKİP KODU":veriler[4], 
                   "İSİM SOYİSİM":veriler[5],
                   "TELEFON NU":"0"+veriler[19],
                   "SONUÇ":veriler[9],
