@@ -451,7 +451,12 @@ with tab33:
             for satir in tablo:
                 sütunlar = satir.find_all("td")
                 veriler = [sütun.get_text(strip=True) for sütun in sütunlar]
-                kargo_verisi()
+            liste.append({"TAKİP KODU":veriler[4], 
+                  "İSİM SOYİSİM":veriler[5],
+                  "TELEFON NU":"0"+veriler[19],
+                  "SONUÇ":veriler[9],
+                  "KARGO ŞUBESİ":veriler[10],
+                  "ÜCRET":veriler[13]+" TL"  })
 
             db = st.dataframe(liste) 
             sayı = len(liste)
