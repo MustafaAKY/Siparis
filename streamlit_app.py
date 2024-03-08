@@ -363,6 +363,10 @@ with tab33:
 
             elif gonderi_tip == "İADE" :
                 st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
+                    
+            elif son_durum == "TESLİMATTA" and gonderi_tip == "NORMAL" :
+                st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ DAĞITIMA ÇIKMIŞ BUGÜN GELEBİLİR</h1>", unsafe_allow_html=True) 
+                    
             else:
                 
                 st.markdown("<h1 style='color: orange; font-size: 25px;'>KARGONUZ ARAS KARGO ŞUBESİNDE EN KISA SÜREDE ALMANIZ GEREKİYOR</h1>", unsafe_allow_html=True)
