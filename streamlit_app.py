@@ -177,7 +177,7 @@ with tab11:
                             connect.update(worksheet="ptt_kargo", data=updated_df1)
                         
                         st.success("Sipariş Kaydedildi")
-                        time.sleep(3)    
+                        time.sleep(1)    
                         streamlit_js_eval(js_expressions="parent.window.location.reload()")
         elif action == "Sipariş Güncelle":
             st.markdown("Sipariş Seçin Ve güncelleyin")
