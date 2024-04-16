@@ -6,6 +6,7 @@ import time
 import requests
 from bs4 import BeautifulSoup as BS
 
+st.set_page_confing(layout="wide")
 tab11, tab22 ,tab33= st.tabs(["Sipariş", "SİL","KARGO TAKİP"]  )
 with tab11:
 
