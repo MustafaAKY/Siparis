@@ -319,67 +319,6 @@ with tab22:
 with tab33:
         st.title ("KARGO TAKİP ETME EKRANI")    
         st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP')
-        
-        takip = st.text_input("Takip Kodu",placeholder='Takip Kodunu buraya yapıştır').strip()
-
-        if st.button("Sorgula"):
-            headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0'}
-            url1 = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip}"
-            
-            response = requests.get(url1,headers=headers)
-            
-            # HTML içeriğini BeautifulSoup kullanarak analiz edin
-            soup = BS(response.content,"html5lib")
-            
-            link_veri = soup.findAll("a")
-            for a_tag in link_veri:
-                href_attribute = a_tag['href']
-                if "CargoInfoWaybillAndDelivered.aspx" in href_attribute:
-                    link_veri=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")
-                    
-                if "CargoInfoTransactionAndRedirection.aspx" in href_attribute:
-                    cıktı_sonuc=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")    
-                        
-            bilgiler =[]
-
-            response=requests.get(link_veri)
-            soup=BS(response.text,"html5lib")
-            cıkıs_sube = soup.find("span",{"id":"cikis_subesi"}).text
-            teslimat_sube = soup.find("span",{"id":"varis_subesi"}).text
-            gonderim_Tarihi = soup.find("span",{"id":"cikis_tarihi"}).text
-            son_durum = soup.find("span",{"id":"Son_Durum"}).text
-            alici_adi = soup.find("span",{"id":"alici_adi_soyadi"}).text
-            gonderi_tip = soup.find("span",{"id":"LabelGonTipi"}).text
-            bilgiler.append({"Alıcı Adı":alici_adi,"Çıkış Şube":cıkıs_sube,"Teslimat Şubesi":teslimat_sube,"Gönderim Tarihi":gonderim_Tarihi,"Kargo Son durum":son_durum,"Gönderi tip":gonderi_tip  })
-            response=requests.get(cıktı_sonuc)
-            soup=BS(response.text,"html5lib")
-            tablo = soup.find("table").findAll("tr")
-
-
-            if son_durum == "TESLİM EDİLDİ" and gonderi_tip == "NORMAL" :
-                st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ TESLİM EDİLDİ</h1>", unsafe_allow_html=True)
-
-            elif son_durum == "YOLDA" :
-                st.markdown("<h1 style='color: blue; font-size: 36px;'>KARGONUZ YOLDADIR EN KISA SÜREDE SİZE GELECEK</h1>", unsafe_allow_html=True)    
-
-            elif gonderi_tip == "İADE" :
-                st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
-                    
-            elif son_durum == "TESLİMATTA" and gonderi_tip == "NORMAL" :
-                st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ DAĞITIMA ÇIKMIŞ BUGÜN GELEBİLİR</h1>", unsafe_allow_html=True) 
-                    
-            else:
-                
-                st.markdown("<h1 style='color: orange; font-size: 25px;'>KARGONUZ ARAS KARGO ŞUBESİNDE EN KISA SÜREDE ALMANIZ GEREKİYOR</h1>", unsafe_allow_html=True)
-                st.markdown(f"<h1 style='color: red; font-size: 36px;'>ARAS KARGO {teslimat_sube} ŞUBESİ</h1>", unsafe_allow_html=True)      
-
-
-            st.dataframe(bilgiler)
-            for td in tablo[0:2]:
-                ts = (td.text)
-                st.text(ts)              
-
-#tarihe göre listeleme kargoları 
 
         kullanici_Adi = "seffafbutik@yesilkar.com"
         sifre = "Ma123456"
@@ -403,6 +342,167 @@ with tab33:
                 "email": kullanici_Adi,
                 "password": sifre
             }
+
+
+        
+        takip = st.text_input("Takip Kodu - Yada Telefon",placeholder='buraya yapıştır').strip()
+        takip = "".join(takip.split())
+        if len(takip) == 13:
+
+
+
+            if takip:
+                headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0'}
+                url1 = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip}"
+                
+                response = requests.get(url1,headers=headers)
+                
+                # HTML içeriğini BeautifulSoup kullanarak analiz edin
+                soup = BS(response.content,"html5lib")
+                
+                link_veri = soup.findAll("a")
+                for a_tag in link_veri:
+                    href_attribute = a_tag['href']
+                    if "CargoInfoWaybillAndDelivered.aspx" in href_attribute:
+                        link_veri=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")
+                        
+                    if "CargoInfoTransactionAndRedirection.aspx" in href_attribute:
+                        cıktı_sonuc=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")    
+                            
+                bilgiler =[]
+
+                response=requests.get(link_veri)
+                soup=BS(response.text,"html5lib")
+                cıkıs_sube = soup.find("span",{"id":"cikis_subesi"}).text
+                teslimat_sube = soup.find("span",{"id":"varis_subesi"}).text
+                gonderim_Tarihi = soup.find("span",{"id":"cikis_tarihi"}).text
+                son_durum = soup.find("span",{"id":"Son_Durum"}).text
+                alici_adi = soup.find("span",{"id":"alici_adi_soyadi"}).text
+                gonderi_tip = soup.find("span",{"id":"LabelGonTipi"}).text
+                bilgiler.append({"Alıcı Adı":alici_adi,"Çıkış Şube":cıkıs_sube,"Teslimat Şubesi":teslimat_sube,"Gönderim Tarihi":gonderim_Tarihi,"Kargo Son durum":son_durum,"Gönderi tip":gonderi_tip  })
+                response=requests.get(cıktı_sonuc)
+                soup=BS(response.text,"html5lib")
+                tablo = soup.find("table").findAll("tr")
+
+
+                if son_durum == "TESLİM EDİLDİ" and gonderi_tip == "NORMAL" :
+                    st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ TESLİM EDİLDİ</h1>", unsafe_allow_html=True)
+
+                elif son_durum == "YOLDA" :
+                    st.markdown("<h1 style='color: blue; font-size: 36px;'>KARGONUZ YOLDADIR EN KISA SÜREDE SİZE GELECEK</h1>", unsafe_allow_html=True)    
+
+                elif gonderi_tip == "İADE" :
+                    st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
+                        
+                elif son_durum == "TESLİMATTA" and gonderi_tip == "NORMAL" :
+                    st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ DAĞITIMA ÇIKMIŞ BUGÜN GELEBİLİR</h1>", unsafe_allow_html=True) 
+                        
+                else:
+                    
+                    st.markdown("<h1 style='color: orange; font-size: 25px;'>KARGONUZ ARAS KARGO ŞUBESİNDE EN KISA SÜREDE ALMANIZ GEREKİYOR</h1>", unsafe_allow_html=True)
+                    st.markdown(f"<h1 style='color: red; font-size: 36px;'>ARAS KARGO {teslimat_sube} ŞUBESİ</h1>", unsafe_allow_html=True)      
+
+
+                st.dataframe(bilgiler)
+                for td in tablo[0:2]:
+                    ts = (td.text)
+                    st.text(ts)              
+        elif len(takip) == 11:
+            if takip:
+                tarih_baslangic = datetime.now()
+                oncesi_15_gun = tarih_baslangic - timedelta(days=15)
+                tarih_bitis = datetime.now().strftime("%d.%m.%Y")
+                tarih_baslangic = oncesi_15_gun.strftime("%d.%m.%Y")
+                
+                giris = requests.post(login_link, headers=headers, data=form_data,cookies=login_response.cookies)
+                kullanici = BS(giris.content, "html.parser")
+                cookie = login_response.cookies
+                cargo_link = f"http://webpostman.yesilkarkargo.com:9999/cargo/?alim_start={tarih_baslangic}&alim_end={tarih_bitis}&durums=-1&teslim_start=&teslim_end=&barkod=&isim=&soyisim=&seh_kod=0&ilce=&sipno=&telno=&d_trbkod=0&d_subekod=0&btnSubmit=btnSubmit"
+                print(cargo_link)
+                cargo_response = requests.get(cargo_link, cookies=cookie)
+                cargo_bs = BS(cargo_response.content, "html5lib")
+                tablo = cargo_bs.find("table", {"id": "generalTables"}).find("tbody").find_all("tr")
+                liste = []
+                st.title("GÖNDERİLEN KARGOLAR")
+                for satir in tablo:
+                    sütunlar = satir.find_all("td")
+                    veriler = [sütun.get_text(strip=True) for sütun in sütunlar]
+                    liste.append({"TAKİP KODU":veriler[4], 
+                    "İSİM SOYİSİM":veriler[5],
+                    "TELEFON NU":"0"+veriler[19],
+                    "SONUÇ":veriler[9],
+                    "KARGO ŞUBESİ":veriler[10],
+                    "ÜCRET":veriler[13]+" TL"  })    
+                
+                
+                df = pd.DataFrame(liste)
+                def arama(telefon_numarasi):
+                    sonuc = df[df["TELEFON NU"] == telefon_numarasi]
+                    if not sonuc.empty:
+                        takip_kodu = sonuc.iloc[0]["TAKİP KODU"]
+                        return takip_kodu
+                    else:
+                        st.warning("Telefon Numarası bulunamadı.")
+                arama(takip)
+                takip_kodu = arama(takip)
+                headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0'}
+                url1 = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip_kodu}"
+                
+                response = requests.get(url1,headers=headers)
+                
+                # HTML içeriğini BeautifulSoup kullanarak analiz edin
+                soup = BS(response.content,"html5lib")
+                
+                link_veri = soup.findAll("a")
+                for a_tag in link_veri:
+                    href_attribute = a_tag['href']
+                    if "CargoInfoWaybillAndDelivered.aspx" in href_attribute:
+                        link_veri=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")
+                        
+                    if "CargoInfoTransactionAndRedirection.aspx" in href_attribute:
+                        cıktı_sonuc=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")    
+                            
+                bilgiler =[]
+
+                response=requests.get(link_veri)
+                soup=BS(response.text,"html5lib")
+                cıkıs_sube = soup.find("span",{"id":"cikis_subesi"}).text
+                teslimat_sube = soup.find("span",{"id":"varis_subesi"}).text
+                gonderim_Tarihi = soup.find("span",{"id":"cikis_tarihi"}).text
+                son_durum = soup.find("span",{"id":"Son_Durum"}).text
+                alici_adi = soup.find("span",{"id":"alici_adi_soyadi"}).text
+                gonderi_tip = soup.find("span",{"id":"LabelGonTipi"}).text
+                bilgiler.append({"Alıcı Adı":alici_adi,"Çıkış Şube":cıkıs_sube,"Teslimat Şubesi":teslimat_sube,"Gönderim Tarihi":gonderim_Tarihi,"Kargo Son durum":son_durum,"Gönderi tip":gonderi_tip  })
+                response=requests.get(cıktı_sonuc)
+                soup=BS(response.text,"html5lib")
+                tablo = soup.find("table").findAll("tr")
+
+
+                if son_durum == "TESLİM EDİLDİ" and gonderi_tip == "NORMAL" :
+                    st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ TESLİM EDİLDİ</h1>", unsafe_allow_html=True)
+
+                elif son_durum == "YOLDA" :
+                    st.markdown("<h1 style='color: blue; font-size: 36px;'>KARGONUZ YOLDADIR EN KISA SÜREDE SİZE GELECEK</h1>", unsafe_allow_html=True)    
+
+                elif gonderi_tip == "İADE" :
+                    st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
+                        
+                elif son_durum == "TESLİMATTA" and gonderi_tip == "NORMAL" :
+                    st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ DAĞITIMA ÇIKMIŞ BUGÜN GELEBİLİR</h1>", unsafe_allow_html=True) 
+                        
+                else:
+                    
+                    st.markdown("<h1 style='color: orange; font-size: 25px;'>KARGONUZ ARAS KARGO ŞUBESİNDE EN KISA SÜREDE ALMANIZ GEREKİYOR</h1>", unsafe_allow_html=True)
+                    st.markdown(f"<h1 style='color: red; font-size: 36px;'>ARAS KARGO {teslimat_sube} ŞUBESİ</h1>", unsafe_allow_html=True)      
+
+                st.text(f"TAKİP KODU : {takip_kodu}")
+                st.dataframe(bilgiler)
+                for td in tablo[0:2]:
+                    ts = (td.text)
+                    st.text(ts)               
+#tarihe göre listeleme kargoları 
+
+
 
             # Giriş isteği yap
         tarih_baslangic = st.date_input(label="BAŞLANGIÇ TARİH")
@@ -467,98 +567,3 @@ with tab33:
             sayı = len(liste)
             
             st.markdown(f"<h1 style='color: green; font-size: 36px;'>GÖNDERİLEN KARGO {sayı} </h1>", unsafe_allow_html=True)
-
-        telefon_sorgulama = st.text_input("Telefon Numarası",placeholder="05xxxxxxxxx")
-
-        if st.button("Telefon Sorgula"):
-            tarih_baslangic = datetime.now()
-            oncesi_15_gun = tarih_baslangic - timedelta(days=15)
-            tarih_bitis = datetime.now().strftime("%d.%m.%Y")
-            tarih_baslangic = oncesi_15_gun.strftime("%d.%m.%Y")
-            
-            giris = requests.post(login_link, headers=headers, data=form_data,cookies=login_response.cookies)
-            kullanici = BS(giris.content, "html.parser")
-            cookie = login_response.cookies
-            cargo_link = f"http://webpostman.yesilkarkargo.com:9999/cargo/?alim_start={tarih_baslangic}&alim_end={tarih_bitis}&durums=-1&teslim_start=&teslim_end=&barkod=&isim=&soyisim=&seh_kod=0&ilce=&sipno=&telno=&d_trbkod=0&d_subekod=0&btnSubmit=btnSubmit"
-            print(cargo_link)
-            cargo_response = requests.get(cargo_link, cookies=cookie)
-            cargo_bs = BS(cargo_response.content, "html5lib")
-            tablo = cargo_bs.find("table", {"id": "generalTables"}).find("tbody").find_all("tr")
-            liste = []
-            st.title("GÖNDERİLEN KARGOLAR")
-            for satir in tablo:
-                sütunlar = satir.find_all("td")
-                veriler = [sütun.get_text(strip=True) for sütun in sütunlar]
-                liste.append({"TAKİP KODU":veriler[4], 
-                  "İSİM SOYİSİM":veriler[5],
-                  "TELEFON NU":"0"+veriler[19],
-                  "SONUÇ":veriler[9],
-                  "KARGO ŞUBESİ":veriler[10],
-                  "ÜCRET":veriler[13]+" TL"  })    
-            
-            
-            df = pd.DataFrame(liste)
-            def arama(telefon_numarasi):
-                sonuc = df[df["TELEFON NU"] == telefon_numarasi]
-                if not sonuc.empty:
-                    takip_kodu = sonuc.iloc[0]["TAKİP KODU"]
-                    return takip_kodu
-                else:
-                    st.warning("Telefon Numarası bulunamadı.")
-            arama(telefon_sorgulama)
-            takip_kodu = arama(telefon_sorgulama)
-            headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36 OPR/107.0.0.0'}
-            url1 = f"https://kargotakip.araskargo.com.tr/mainpage.aspx?code={takip_kodu}"
-            
-            response = requests.get(url1,headers=headers)
-            
-            # HTML içeriğini BeautifulSoup kullanarak analiz edin
-            soup = BS(response.content,"html5lib")
-            
-            link_veri = soup.findAll("a")
-            for a_tag in link_veri:
-                href_attribute = a_tag['href']
-                if "CargoInfoWaybillAndDelivered.aspx" in href_attribute:
-                    link_veri=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")
-                    
-                if "CargoInfoTransactionAndRedirection.aspx" in href_attribute:
-                    cıktı_sonuc=(f"https://kargotakip.araskargo.com.tr/{href_attribute}")    
-                        
-            bilgiler =[]
-
-            response=requests.get(link_veri)
-            soup=BS(response.text,"html5lib")
-            cıkıs_sube = soup.find("span",{"id":"cikis_subesi"}).text
-            teslimat_sube = soup.find("span",{"id":"varis_subesi"}).text
-            gonderim_Tarihi = soup.find("span",{"id":"cikis_tarihi"}).text
-            son_durum = soup.find("span",{"id":"Son_Durum"}).text
-            alici_adi = soup.find("span",{"id":"alici_adi_soyadi"}).text
-            gonderi_tip = soup.find("span",{"id":"LabelGonTipi"}).text
-            bilgiler.append({"Alıcı Adı":alici_adi,"Çıkış Şube":cıkıs_sube,"Teslimat Şubesi":teslimat_sube,"Gönderim Tarihi":gonderim_Tarihi,"Kargo Son durum":son_durum,"Gönderi tip":gonderi_tip  })
-            response=requests.get(cıktı_sonuc)
-            soup=BS(response.text,"html5lib")
-            tablo = soup.find("table").findAll("tr")
-
-
-            if son_durum == "TESLİM EDİLDİ" and gonderi_tip == "NORMAL" :
-                st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ TESLİM EDİLDİ</h1>", unsafe_allow_html=True)
-
-            elif son_durum == "YOLDA" :
-                st.markdown("<h1 style='color: blue; font-size: 36px;'>KARGONUZ YOLDADIR EN KISA SÜREDE SİZE GELECEK</h1>", unsafe_allow_html=True)    
-
-            elif gonderi_tip == "İADE" :
-                st.markdown("<h1 style='color: red; font-size: 36px;'>KARGONUZ İADE EDİLMİŞTİR GERİ DÖNÜYOR</h1>", unsafe_allow_html=True)
-                    
-            elif son_durum == "TESLİMATTA" and gonderi_tip == "NORMAL" :
-                st.markdown("<h1 style='color: green; font-size: 36px;'>KARGONUZ DAĞITIMA ÇIKMIŞ BUGÜN GELEBİLİR</h1>", unsafe_allow_html=True) 
-                    
-            else:
-                
-                st.markdown("<h1 style='color: orange; font-size: 25px;'>KARGONUZ ARAS KARGO ŞUBESİNDE EN KISA SÜREDE ALMANIZ GEREKİYOR</h1>", unsafe_allow_html=True)
-                st.markdown(f"<h1 style='color: red; font-size: 36px;'>ARAS KARGO {teslimat_sube} ŞUBESİ</h1>", unsafe_allow_html=True)      
-
-
-            st.dataframe(bilgiler)
-            for td in tablo[0:2]:
-                ts = (td.text)
-                st.text(ts)  
