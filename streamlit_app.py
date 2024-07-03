@@ -224,7 +224,7 @@ with tab11:
                     label="TUTAR*", value=veri_Giris["TUTAR"]
                     )
         
-                    ÜRÜN = st.text_Area(
+                    ÜRÜN = st.text_area(
                     
                     label="ÜRÜN*", value=veri_Giris["ÜRÜN"]
                     )
