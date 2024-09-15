@@ -30,7 +30,8 @@ with tab11:
         
         
         #st.dataframe(veriler_data2)
-        siparis_sayi = bool(len(veriler_data2['İSİM SOYİSİM'].dropna()))
+        siparis_sayi = veriler_data2['İSİM SOYİSİM'].dropna()
+        siparis_sayi = bool(siparis_sayi.shape[0])
         if siparis_sayi < 5 :
                 ico = "too_sad_26009.png"
         elif 6 <= siparis_sayi <= 10 :  
