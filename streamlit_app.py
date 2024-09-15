@@ -31,10 +31,14 @@ with tab11:
         
         #st.dataframe(veriler_data2)
         siparis_sayi = bool(len(veriler_data2['İSİM SOYİSİM'].dropna()))
-        if siparis_sayi < 20 :
+        if siparis_sayi < 5 :
                 ico = "too_sad_26009.png"
+        elif siparis_sayi < 10 :  
+                ico = "h1.png"
+        elif siparis_sayi < 20 :
+                ico = "money.png" 
         else:
-                ico = "money.png"
+                ico = "bmw.png"
         st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
