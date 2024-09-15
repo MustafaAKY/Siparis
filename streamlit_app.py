@@ -41,7 +41,6 @@ with tab11:
         else:
                 ico = "bmw.png"
         st.image(ico)
-        st.write (f"sayi{siparis_sayi}")
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
