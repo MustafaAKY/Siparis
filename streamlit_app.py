@@ -31,7 +31,7 @@ with tab11:
         
         #st.dataframe(veriler_data2)
         siparis_sayi = veriler_data['İSİM SOYİSİM'].dropna()
-        siparis_sayi = bool(siparis_sayi.shape[0])
+        siparis_sayi = bool(len(siparis_sayi.shape[0]))
         if siparis_sayi < 5 :
                 ico = "too_sad_26009.png"
         elif 6 <= siparis_sayi <= 10 :  
@@ -41,7 +41,7 @@ with tab11:
         else:
                 ico = "bmw.png"
         st.image(ico)
-        st.write (siparis_sayi)
+        st.write f("sayi{siparis_sayi}")
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
