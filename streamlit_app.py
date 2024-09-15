@@ -33,9 +33,9 @@ with tab11:
         siparis_sayi = bool(len(veriler_data2['İSİM SOYİSİM'].dropna()))
         if siparis_sayi < 5 :
                 ico = "too_sad_26009.png"
-        elif siparis_sayi < 10 :  
+        elif 6 <= siparis_sayi <= 10 :  
                 ico = "h1.png"
-        elif siparis_sayi < 20 :
+        elif 11 <= siparis_sayi <= 20 :
                 ico = "money.png" 
         else:
                 ico = "bmw.png"
