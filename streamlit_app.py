@@ -32,11 +32,9 @@ with tab11:
         #st.dataframe(veriler_data2)
         siparis_sayi = bool(len(veriler_data2['İSİM SOYİSİM'].dropna()))
         if siparis_sayi < 20 :
-                gif = "Durum Kötü"
-                ico = "dollar.gif"
+                ico = "too_sad_26009.png"
         else:
-                git = "Durum iyi"
-        st.markdown(f"KARGO SEÇ {gif}")
+                ico = "money.png"
         st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
