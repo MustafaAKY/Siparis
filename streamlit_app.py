@@ -33,9 +33,11 @@ with tab11:
         siparis_sayi = bool(len(veriler_data2['İSİM SOYİSİM'].dropna()))
         if siparis_sayi < 20 :
                 gif = "Durum Kötü"
+                ico = "too_sad_26009.png"
         else:
                 git = "Durum iyi"
         st.markdown(f"KARGO SEÇ {gif}")
+        st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
