@@ -30,7 +30,12 @@ with tab11:
         
         
         #st.dataframe(veriler_data2)
-        st.markdown("KARGO SEÇ")
+        siparis_sayi = veriler_data2['İSİM SOYİSİM'].dropna()
+        if siparis_sayisi < 20 :
+                gif = "Durum Kötü"
+        else:
+                git = "Durum iyi"
+        st.markdown(f"KARGO SEÇ" {gif)
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
