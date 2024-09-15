@@ -35,7 +35,7 @@ with tab11:
                 gif = "Durum Kötü"
         else:
                 git = "Durum iyi"
-        st.markdown(f"KARGO SEÇ" {gif})
+        st.markdown(f"KARGO SEÇ {gif}")
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
