@@ -328,7 +328,7 @@ with tab22:
 
 with tab33:
         st.title ("KARGO TAKİP ETME EKRANI")    
-        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP',width=5)
+        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP',width=30)
 
         kullanici_Adi = "seffafbutik@yesilkar.com"
         sifre = "Ma123456"
