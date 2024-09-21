@@ -40,7 +40,7 @@ with tab11:
                 ico = "money.png" 
         else:
                 ico = "bmw.png"
-        st.image(ico,width=30)
+        st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
                 "PTT",]
@@ -77,16 +77,16 @@ with tab11:
                 
               
                 sube_kodu =""
-                if kargo_tip == "ARAS KARGO":
+                if kargo_tip == "S KARGO":
                     
                     sube_kodu ="SUL"
                 else:
                    
                     sube_kodu ="155"      
                 lines = bilgiler.title().split('\n')
-                iller = ["Adana", "Adıyaman", "Afyonkarahisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", 
+                iller = ["Adana", "Adıyaman", "Afyonkhisar", "Ağrı", "Aksy", "Amasya", "Ank", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", 
                          "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", 
-                         "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmaraş", "Karabük", 
+                         "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmş", "Kbük", 
                          "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", 
                          "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", 
                          "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
@@ -328,7 +328,7 @@ with tab22:
 
 with tab33:
         st.title ("KARGO TAKİP ETME EKRANI")    
-        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP')
+        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP',width=5)
 
         kullanici_Adi = "seffafbutik@yesilkar.com"
         sifre = "Ma123456"
