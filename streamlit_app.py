@@ -32,10 +32,11 @@ with tab11:
         #st.dataframe(veriler_data2)
         siparis_sayi = veriler_data['İSİM SOYİSİM'].dropna()
         siparis_sayi = siparis_sayi.shape[0]
-        if siparis_sayi < 5 :
+        if siparis_sayi <= 5 :
                 ico = "too_sad_26009.png"
         elif 6 <= siparis_sayi <= 10 :  
-                ico = "h1.png"
+                #ico = "h1.png"
+                ico = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjd3dTdmZDUzZmF6d2IzMWR1MGt3Z3ExaWV2ajM3YTB1MmU5Z2hjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xH7bU4gqqq7S1Bri1v/giphy-downsized.gif"
         elif 11 <= siparis_sayi <= 20 :
                 ico = "money.png" 
         else:
