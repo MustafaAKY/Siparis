@@ -41,7 +41,7 @@ with tab11:
                 ico = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjd3dTdmZDUzZmF6d2IzMWR1MGt3Z3ExaWV2ajM3YTB1MmU5Z2hjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xH7bU4gqqq7S1Bri1v/giphy-downsized.gif"
         else:
                 ico = "bmw.png"
-        st.image(ico)
+        st.image(ico,width=50)
         SUBELER = [
                 "ARAS KARGO",
                 "PTT"]
@@ -329,7 +329,7 @@ with tab22:
 
 with tab33:
         st.title ("KARGO TAKİP ETME EKRANI")    
-        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP',width=30)
+        st.image("aras.jpg",caption='ARAS KARGO KARGO TAKİP')
 
         kullanici_Adi = "seffafbutik@yesilkar.com"
         sifre = "Ma123456"
