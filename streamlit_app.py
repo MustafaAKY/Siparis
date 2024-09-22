@@ -77,7 +77,7 @@ with tab11:
                 
               
                 sube_kodu =""
-                if kargo_tip == "S KARGO":
+                if kargo_tip == "ARAS KARGO":
                     
                     sube_kodu ="SUL"
                 else:
