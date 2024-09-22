@@ -43,9 +43,9 @@ with tab11:
         st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
-                "PTT",]
+                "PTT"]
         
-        kargo_tip = st.selectbox("Hangi Kargo",["ARAS KARGO","PTT",])
+        kargo_tip = st.selectbox("Hangi Kargo",["ARAS KARGO","PTT"])
         
         Hangi_veri=""
         if kargo_tip=="ARAS KARGO":
