@@ -35,10 +35,10 @@ with tab11:
         if siparis_sayi <= 5 :
                 ico = "too_sad_26009.png"
         elif 6 <= siparis_sayi <= 10 :  
-                #ico = "h1.png"
-                ico = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjd3dTdmZDUzZmF6d2IzMWR1MGt3Z3ExaWV2ajM3YTB1MmU5Z2hjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xH7bU4gqqq7S1Bri1v/giphy-downsized.gif"
+                ico = "h1.png"                
         elif 11 <= siparis_sayi <= 20 :
-                ico = "money.png" 
+                #ico = "money.png" 
+                ico = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjd3dTdmZDUzZmF6d2IzMWR1MGt3Z3ExaWV2ajM3YTB1MmU5Z2hjOCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xH7bU4gqqq7S1Bri1v/giphy-downsized.gif"
         else:
                 ico = "bmw.png"
         st.image(ico)
