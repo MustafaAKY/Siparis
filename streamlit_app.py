@@ -84,16 +84,16 @@ with tab11:
                    
                     sube_kodu ="155"      
                 lines = bilgiler.title().split('\n')
-                iller = ["Adana", "Adıyaman", "Afyonkhisar", "Ağrı", "Aksy", "Amasya", "Ank", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", 
+                iller = ["Adana", "Adıyaman", "Afyonkhisar", "Ağrı", "Aksaray", "Amasya", "Ankara", "Antalya", "Ardahan", "Artvin", "Aydın", "Balıkesir", "Bartın", "Batman", 
                          "Bayburt", "Bilecik", "Bingöl", "Bitlis", "Bolu", "Burdur", "Bursa", "Çanakkale", "Çankırı", "Çorum", "Denizli", "Diyarbakır", "Düzce", "Edirne", "Elazığ", 
-                         "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmş", "Kabük", 
+                         "Erzincan", "Erzurum", "Eskişehir", "Gaziantep", "Giresun", "Gümüşhane", "Hakkari", "Hatay", "Iğdır", "Isparta", "İstanbul", "İzmir", "Kahramanmş", "Karabük", 
                          "Karaman", "Kars", "Kastamonu", "Kayseri", "Kırıkkale", "Kırklareli", "Kırşehir", "Kilis", "Kocaeli", "Konya", "Kütahya", "Malatya", "Manisa", "Mardin", "Mersin", 
                          "Muğla", "Muş", "Nevşehir", "Niğde", "Ordu", "Osmaniye", "Rize", "Sakarya", "Samsun", "Siirt", "Sinop", "Sivas", "Şanlıurfa", "Şırnak", "Tekirdağ", "Tokat", 
                          "Trabzon", "Tunceli", "Uşak", "Van", "Yalova", "Yozgat", "Zonguldak"]
                 if len(lines) >= 6:
                             isim_soyisim = lines[0]
                             adres_bilgisi = lines[1]
-                            ilce_il = lines[2].split().capitalize()
+                            ilce_il = lines[2].split()
                             
                             if len(ilce_il) == 2:
                                 ilce = ilce_il[0]
