@@ -40,7 +40,7 @@ with tab11:
                 ico = "money.png"               
         else:
                 ico = "bmw.png"
-        st.image(ico,width=80)
+        st.image(ico)
         SUBELER = [
                 "ARAS KARGO",
                 "PTT"]
