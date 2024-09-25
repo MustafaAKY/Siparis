@@ -5,4 +5,4 @@ requests
 beautifulsoup4
 html5lib
 numpy==1.26.4
-padas==2.2.1
+pandas==2.2.2
