@@ -359,7 +359,7 @@ with tab22:
     st.title ("Sipariş Silme Ekranı")
     st.text("DİKKAT SİPARİŞLERİ YAZDIRDIĞINDAN EMİN OL")
     if st.button("Hepsini Sil"):
-                            
+            response = (supabase.table("siparislistesi").update({"siparis_durumu": "1"}).eq("siparis_durumu", "2").execute())                
             Hangi_veri.drop(Hangi_veri.index, inplace=True)
             connect.update(worksheet=hangi_sube, data=Hangi_veri)
             st.success("Tüm veri silindi!")        
