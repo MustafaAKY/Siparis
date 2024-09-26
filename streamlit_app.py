@@ -7,12 +7,15 @@ import requests
 from bs4 import BeautifulSoup as BS
 from datetime import datetime, timedelta
 from supabase import create_client, Client
+import pytz
 
 surl = "https://ezyhoocwfrocaqsehler.supabase.co"
 skey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6eWhvb2N3ZnJvY2Fxc2VobGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjcyOTkzOTUsImV4cCI6MjA0Mjg3NTM5NX0.3A2pCuleW0RnGIlCaM5pALWw8fB_KW_y2-qsIJ1_FJI"
 
 supabase: Client = create_client(surl, skey)
-starih = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+turkey_tz = pytz.timezone('Europe/Istanbul')
+starih = datetime.now(turkey_tz).strftime("%Y-%m-%d %H:%M:%S")
+
 
 st.set_page_config(layout="wide")
 tab11, tab22 ,tab33= st.tabs(["Sipariş", "SİL","KARGO TAKİP"]  )
