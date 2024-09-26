@@ -6,6 +6,14 @@ import time
 import requests
 from bs4 import BeautifulSoup as BS
 from datetime import datetime, timedelta
+from supabase import create_client, Client
+
+url = "https://ezyhoocwfrocaqsehler.supabase.co"
+key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV6eWhvb2N3ZnJvY2Fxc2VobGVyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjcyOTkzOTUsImV4cCI6MjA0Mjg3NTM5NX0.3A2pCuleW0RnGIlCaM5pALWw8fB_KW_y2-qsIJ1_FJI"
+
+supabase: Client = create_client(url, key)
+starih = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 st.set_page_config(layout="wide")
 tab11, tab22 ,tab33= st.tabs(["Sipariş", "SİL","KARGO TAKİP"]  )
 with tab11:
@@ -179,7 +187,33 @@ with tab11:
                                 }
                             ]
                         )
-        
+                        sbilgilr = {'tarih': tarih ,
+                                    "İSİM SOYİSİM": isim_soyisim,
+                                    "İLÇE": ilce,
+                                    "İL": il,
+                                    "ADRES": adres_bilgisi,
+                                    "TELEFON": telefon,
+                                    "ŞUBE KOD": sube_kodu,
+                                    "MÜŞTERİ NO": "",
+                                    "TUTAR": ucret,
+                                    "ÜRÜN": urun_bilgisi,
+                                    "MİKTAR": "1",
+                                    "GRAM": "800",
+                                    "GTÜRÜ": "2",
+                                    "ÜCRETTÜRÜ": "6",
+                                    "EK HİZMET": " ",
+                                    "KDV": "8",
+                                    "SİP NO": "",
+                                    "ÇIKIŞ NO": "",
+                                    "SATICI": "",
+                                    "HATTAR": "",
+                                    "FATTAR": "",
+                                    "EN": "10",
+                                    "BOY": "15",
+                                    "YÜKSEKLİK": "10",
+                                }
+                            
+                        response = supabase.table('siparislistesi').insert(sbilgilr).execute()
                         if kargo_tip == "ARAS KARGO":
                             updated_df = pd.concat([veriler_data, veri_Giris], ignore_index=True)
                             connect.update(worksheet="aras_kargo", data=updated_df)
