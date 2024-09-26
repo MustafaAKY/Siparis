@@ -214,6 +214,7 @@ with tab11:
                                     "EN": "10",
                                     "BOY": "15",
                                     "YÜKSEKLİK": "10",
+                                    "siparis_durumu": "1",
                                 }
                             
                         response = supabase.table('siparislistesi').insert(sbilgilr).execute()
