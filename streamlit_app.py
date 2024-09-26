@@ -187,7 +187,7 @@ with tab11:
                                 }
                             ]
                         )
-                        sbilgilr = {'tarih': tarih ,
+                        sbilgilr = {'tarih': starih ,
                                     "İSİM SOYİSİM": isim_soyisim,
                                     "İLÇE": ilce,
                                     "İL": il,
