@@ -347,8 +347,9 @@ with tab11:
             vendor_to_delete = st.selectbox(
                 "Siparişi silindi", options=Hangi_veri["İSİM SOYİSİM"].tolist()
             )
-        
+                
             if st.button("SİL"):
+                response = supabase.table("siparislistesi").delete().eq("İSİM SOYİSİM", vendor_to_delete).eq("siparis_durumu", "1").execute()    
                 Hangi_veri.drop(
                     Hangi_veri[Hangi_veri["İSİM SOYİSİM"] == vendor_to_delete].index,
                     inplace=True,
