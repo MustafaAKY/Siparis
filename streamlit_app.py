@@ -287,6 +287,15 @@ with tab11:
                         st.write("bilgiler Eksik")
                         st.stop()
              else:
+                  response = supabase.table("siparislistesi").update({
+                            "İSİM SOYİSİM": bilgiler,
+                            "İLÇE": ilce,
+                            "İL": il,
+                            "ADRES": ADRES,
+                            "TELEFON": TELEFON,
+                            "TUTAR":TUTAR,
+                            "ÜRÜN":ÜRÜN,
+                            }).eq("İSİM SOYİSİM", bilgiler).execute()                      
                   Hangi_veri.drop(
                         Hangi_veri[
                         Hangi_veri["İSİM SOYİSİM"] == vendor_to_update
@@ -324,15 +333,7 @@ with tab11:
                                 }
                             ]
                         )
-                  response = supabase.table("siparislistesi").update({
-                            "İSİM SOYİSİM": bilgiler,
-                            "İLÇE": ilce,
-                            "İL": il,
-                            "ADRES": ADRES,
-                            "TELEFON": TELEFON,
-                            "TUTAR":TUTAR,
-                            "ÜRÜN":ÜRÜN,
-                            }).eq("İSİM SOYİSİM", bilgiler).eq("siparis_durumu","1").execute()   
+  
                         # Adding updated data to the dataframe
                   updated_df = pd.concat(
                   [Hangi_veri, updated_vendor_data], ignore_index=True
