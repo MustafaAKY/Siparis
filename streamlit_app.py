@@ -15,7 +15,7 @@ skey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV
 supabase: Client = create_client(surl, skey)
 turkey_tz = pytz.timezone('Europe/Istanbul')
 starih = datetime.now(turkey_tz).strftime("%Y-%m-%d %H:%M:%S")
-
+yukleme_tarihi= datetime.now(turkey_tz).strftime("%Y-%m-%d")
 
 st.set_page_config(layout="wide")
 tab11, tab22 ,tab33= st.tabs(["Sipariş", "SİL","KARGO TAKİP"]  )
@@ -370,7 +370,9 @@ with tab22:
     st.title ("Sipariş Silme Ekranı")
     st.text("DİKKAT SİPARİŞLERİ YAZDIRDIĞINDAN EMİN OL")
     if st.button("Hepsini Sil"):
-            response = (supabase.table("siparislistesi").update({"siparis_durumu": "2"}).eq("siparis_durumu", "1").execute())                
+            response = (supabase.table("siparislistesi").update({'yazdirma_tarihi': yukleme_tarihi}).eq("siparis_durumu", "1").execute())
+            response = (supabase.table("siparislistesi").update({"siparis_durumu": "2"}).eq("siparis_durumu", "1").execute())        
+
             Hangi_veri.drop(Hangi_veri.index, inplace=True)
             connect.update(worksheet=hangi_sube, data=Hangi_veri)
             st.success("Tüm veri silindi!")        
