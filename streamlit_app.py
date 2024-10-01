@@ -30,9 +30,9 @@ with tab11:
         veriler_data = veriler_data.dropna(how="all") 
         
         
-        veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
-        veriler_data2 = veriler_data2.dropna(how="all") 
-        
+        #veriler_data2 = connect.read(worksheet="ptt_kargo", usecols=list(range(23)),ttl=5)
+        #veriler_data2 = veriler_data2.dropna(how="all") 
+        veriler_data2 = ""
         
         
         
